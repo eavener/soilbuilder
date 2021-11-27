@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<header th:replace="fragments :: header"></header>
+
+<form method="post">
+    <div class="form-group">
+        <label>Common Name
+            <input type="text" th:field="${seed.commonName}" class="form-control" />
+        </label>
+        <p class="error" th:errors="${seed.commonName}"></p>
+    </div>
+    <div class="form-group">
+        <label>Scientific Name
+            <input type="text" th:field="${seed.scientificName}" class="form-control" />
+        </label>
+    </div>
+    <div class="form-group">
+        <label>Sun
+            <select th:field="${seed.sun}">
+                <option th:each="sun : ${suns}"
+                        th:value="${sun}"
+                        th:text="${sun.displayName}"></option>
+            </select>
+        </label>
+    </div>
+    <div class="form-group">
+        <label>Water
+            <select th:field="${seed.water}">
+                <option th:each="water : ${waters}"
+                        th:value="${water}"
+                        th:text="${water.displayName}"></option>
+            </select>
+        </label>
+    </div>
+    <div class="form-group">
+        <label>Mature height
+            <select th:field="${seed.height}">
+                <option th:each="height : ${heights}"
+                        th:value="${height}"
+                        th:text="${height.displayName}"></option>
+            </select>
+        </label>
+    </div>
+    <div class="form-group">
+        <label>Mature spread
+            <select th:field="${seed.width}">
+                <option th:each="width : ${widths}"
+                        th:value="${width}"
+                        th:text="${width.displayName}"></option>
+            </select>
+        </label>
+    </div>
+    <div class="form-group">
+        <label>Deer resistant?
+        <input type="checkbox" name="deerResistant" th:checked="${seed.deerResistant}" /> </label>
+    </div>
+    <div class="form-group">
+        <label>Deer food?
+            <input type="checkbox" name="deerFood" th:checked="${seed.deerFood}" /> </label>
+    </div>
+    <div class="form-group">
+        <label>Walnut resistant?
+            <input type="checkbox" name="walnutResistant" th:checked="${seed.walnutResistant}" /> </label>
+    </div>
+    <div class="form-group">
+        <label>Pollinator friendly?
+            <input type="checkbox" name="beeFood" th:checked="${seed.beeFood}" /> </label>
+    </div>
+    <div class="form-group">
+        <label>Direct sow?
+            <input type="checkbox" name="directSow" th:checked="${seed.directSow}" /> </label>
+    </div>
+    <div class="form-group">
+        <label>Direct sow by:
+            <input type="date" name="sowBy" th:value="${seed.sowBy}" /> </label>
+    </div>
+    <div class="form-group">
+        <label>Indoor start?
+            <input type="checkbox" name="indoorStart" th:checked="${seed.indoorStart}" /> </label>
+    </div>
+    <div class="form-group">
+        <label>Indoor start by:
+            <input type="date" name="indoorStartBy" th:value="${seed.indoorStartBy}" /> </label>
+    </div>
+    <div class="form-group">
+        <label>Transplant by:
+            <input type="date" name="moveOutBy" th:value="${seed.moveOutBy}" /> </label>
+    </div>
+    <div class="form-group">
+        <label>Family
+            <select th:field="${seed.family}">
+                <option th:each="family : ${families}"
+                        th:value="${family}"
+                        th:text="${family.displayName}"></option>
+            </select>
+        </label>
+    </div>
+    <div class="form-group">
+        <label>Edible?
+            <input type="checkbox" name="edible" th:checked="${seed.edible}" /> </label>
+    </div>
+    <div class="form-group">
+        <label>Native?
+            <select th:field="${seed.nativity}">
+                <option th:each="nativity : ${nativities}"
+                        th:value="${nativity}"
+                        th:text="${nativity.displayName}"></option>
+            </select>
+        </label>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create Seed" class="btn btn-success">
+    </div>
+</form>
+
+</body>
+</html>
