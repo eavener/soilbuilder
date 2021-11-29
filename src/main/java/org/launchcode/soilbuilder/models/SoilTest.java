@@ -1,14 +1,19 @@
 package org.launchcode.soilbuilder.models;
 
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
-import java.util.Objects;
 
-public class SoilTest {
+@Entity
+public class SoilTest extends AbstractEntity{
 
-    private int id;
-    private static int nextId = 1;
+    @ManyToOne
+    @JoinColumn(name = "soil_plot_id")
+    @NotNull
+    private SoilPlot soilPlot;
 
-    private String plotName;
     private Date testDate;
     private Integer hardinessZone;
     private Date firstFrost;
@@ -34,13 +39,10 @@ public class SoilTest {
     private Double cationExchangeCapacity;
 
     public SoilTest() {
-        id = nextId;
-        nextId++;
     }
 
-    public SoilTest(String plotName, Date testDate, Integer hardinessZone, Date firstFrost, Date lastFrost, boolean walnut, boolean deer, Double nitrogen, Double phosphorous, Double potassium, Double sulfur, Double calcium, Double magnesium, Double copper, Double iron, Double manganese, Double zinc, Double boron, Double chloride, Double molybdenum, Double organicMatter, Double pH, Double salinity, Double cationExchangeCapacity) {
-        this();
-        this.plotName = plotName;
+    public SoilTest(SoilPlot soilPlot, Date testDate, Integer hardinessZone, Date firstFrost, Date lastFrost, boolean walnut, boolean deer, Double nitrogen, Double phosphorous, Double potassium, Double sulfur, Double calcium, Double magnesium, Double copper, Double iron, Double manganese, Double zinc, Double boron, Double chloride, Double molybdenum, Double organicMatter, Double pH, Double salinity, Double cationExchangeCapacity) {
+        this.soilPlot = soilPlot;
         this.testDate = testDate;
         this.hardinessZone = hardinessZone;
         this.firstFrost = firstFrost;
@@ -66,16 +68,12 @@ public class SoilTest {
         this.cationExchangeCapacity = cationExchangeCapacity;
     }
 
-    public int getId() {
-        return id;
+    public SoilPlot getSoilPlot() {
+        return soilPlot;
     }
 
-    public String getPlotName() {
-        return plotName;
-    }
-
-    public void setPlotName(String plotName) {
-        this.plotName = plotName;
+    public void setSoilPlot(SoilPlot soilPlot) {
+        this.soilPlot = soilPlot;
     }
 
     public Date getTestDate() {
@@ -260,18 +258,5 @@ public class SoilTest {
 
     public void setCationExchangeCapacity(Double cationExchangeCapacity) {
         this.cationExchangeCapacity = cationExchangeCapacity;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        SoilTest userSoil = (SoilTest) o;
-        return getId() == userSoil.getId();
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId());
     }
 }

@@ -1,12 +1,16 @@
 package org.launchcode.soilbuilder.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
-public class User {
+@Entity
+public class User extends AbstractEntity {
 
     @NotBlank(message = "Please enter a username")
     @Size(min = 5, max = 15, message = "Username must be between 5 amd 15 characters")
@@ -74,5 +78,10 @@ public class User {
     public void setVerify(String verify) {
         this.verify = verify;
         checkPassword();
+    }
+
+    @Override
+    public String toString() {
+        return username;
     }
 }

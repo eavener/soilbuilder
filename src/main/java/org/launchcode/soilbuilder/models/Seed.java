@@ -1,20 +1,14 @@
 package org.launchcode.soilbuilder.models;
 
 
-
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
-import java.util.Objects;
 
 @Entity
-public class Seed {
-
-    @Id
-    @GeneratedValue
-    private int id;
+@Table
+public class Seed extends AbstractEntity{
 
     @NotBlank(message="this field is required")
     private String commonName;
@@ -63,10 +57,6 @@ public class Seed {
     }
 
     public Seed() {}
-
-    public int getId() {
-        return id;
-    }
 
     public String getCommonName() {
         return commonName;
@@ -215,18 +205,5 @@ public class Seed {
     @Override
     public String toString() {
         return commonName;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Seed seed = (Seed) o;
-        return getId() == seed.getId() && getCommonName().equals(seed.getCommonName());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getCommonName());
     }
 }

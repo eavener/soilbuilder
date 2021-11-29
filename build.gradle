@@ -19,6 +19,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'mysql:mysql-connector-java'
 	implementation 'javax.persistence:javax.persistence-api:2.2'
+	implementation 'org.webjars.npm:fullcalendar-scheduler:1.7.1'
+	implementation 'org.webjars:momentjs:2.9.0'
+	implementation 'org.webjars.bowergithub.jquery:jquery-ui:1.12.1'
+	implementation 'org.webjars.bower:jquery:2.1.3'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
