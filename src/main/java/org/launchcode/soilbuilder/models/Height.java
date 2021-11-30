@@ -1,10 +1,12 @@
 package org.launchcode.soilbuilder.models;
 
+import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Height extends AbstractCharacteristics {
 
     @OneToMany(mappedBy = "height")

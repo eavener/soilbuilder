@@ -2,6 +2,7 @@ package org.launchcode.soilbuilder.controllers;
 
 import org.launchcode.soilbuilder.data.*;
 import org.launchcode.soilbuilder.models.*;
+import org.launchcode.soilbuilder.models.dto.SeedTagDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -107,5 +108,31 @@ public class SeedController {
             model.addAttribute("seed", seed);
         }
         return "seeds/detail";
+    }
+
+    @GetMapping("add-tag")
+    public String displayAddTagForm(@RequestParam Integer seedId, Model model) {
+        Optional<Seed> result = seedRepository.findById(seedId);
+        Seed seed = result.get();
+        model.addAttribute("title", "Add tag to: " + seed.getCommonName());
+        model.addAttribute("tags", tagRepository.findAll());
+        SeedTagDTO seedTag = new SeedTagDTO();
+        seedTag.setSeed(seed);
+        model.addAttribute("seedTag", seedTag);
+        return "seeds/add-tag.html";
+    }
+
+    @PostMapping("add-tag")
+    public String processAddTagForm(@ModelAttribute @Valid SeedTagDTO seedTag, Errors errors, Model model){
+        if (!errors.hasErrors()) {
+            Seed seed = seedTag.getSeed();
+            Tag tag = seedTag.getTag();
+            if (!seed.getTags().contains(tag)){
+                seed.addTag(tag);
+                seedRepository.save(seed);
+            }
+            return "redirect:detail?eventId= " + seed.getId();
+        }
+        return "redirect:add-tag";
     }
 }

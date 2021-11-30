@@ -1,5 +1,6 @@
 package org.launchcode.soilbuilder.models;
 
+import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
@@ -7,6 +8,7 @@ import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Light extends AbstractCharacteristics {
 
     @OneToMany(mappedBy = "light")
