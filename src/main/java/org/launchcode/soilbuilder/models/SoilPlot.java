@@ -1,8 +1,11 @@
 package org.launchcode.soilbuilder.models;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class SoilPlot extends AbstractEntity{
@@ -11,13 +14,16 @@ public class SoilPlot extends AbstractEntity{
     @Size(min=3, message="Name must be at least 3 characters long")
     private String plotName;
 
-    private LightNeeds sun;
-    private WaterNeeds water;
+    private Light sun;
+    private Water water;
     private Integer length;
     private Integer width;
     private boolean walnutResistant;
 
-    public SoilPlot(@Size(min=3, message="Name must be at least 3 characters long") String plotName, LightNeeds sun, WaterNeeds water, Integer length, Integer width, boolean walnutResistant) {
+    @OneToMany
+    private final List<SoilTest> soilTests = new ArrayList<>();
+
+    public SoilPlot(@Size(min=3, message="Name must be at least 3 characters long") String plotName, Light sun, Water water, Integer length, Integer width, boolean walnutResistant) {
         this.plotName = plotName;
         this.sun = sun;
         this.water = water;
@@ -36,19 +42,19 @@ public class SoilPlot extends AbstractEntity{
         this.plotName = plotName;
     }
 
-    public LightNeeds getSun() {
+    public Light getSun() {
         return sun;
     }
 
-    public void setSun(LightNeeds sun) {
+    public void setSun(Light sun) {
         this.sun = sun;
     }
 
-    public WaterNeeds getWater() {
+    public Water getWater() {
         return water;
     }
 
-    public void setWater(WaterNeeds water) {
+    public void setWater(Water water) {
         this.water = water;
     }
 

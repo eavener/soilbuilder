@@ -1,59 +1,67 @@
 package org.launchcode.soilbuilder.models;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table
 public class Seed extends AbstractEntity{
 
     @NotBlank(message="this field is required")
     private String commonName;
 
     private String scientificName;
-    private LightNeeds sun;
-    private WaterNeeds water;
-    private Heights height;
-    private Spreads width;
-    private boolean deerResistant;
-    private boolean deerFood;
-    private boolean walnutResistant;
-    private boolean beeFood;
-    private boolean directSow;
-    private Date sowBy;
-    private boolean indoorStart;
-    private Date indoorStartBy;
-    private Date moveOutBy;
-    private Family family;
-    private boolean edible;
-    private Nativity nativity;
 
-    public Seed(String commonName, String scientificName, LightNeeds sun, WaterNeeds water, Heights height, Spreads width, boolean deerResistant, boolean deerFood, boolean walnutResistant, boolean beeFood, boolean directSow, Date sowBy, boolean indoorStart, Date indoorStartBy, Date moveOutBy, Family family, boolean edible, Nativity nativity) {
+    @ManyToOne
+    @NotNull(message="this field is required")
+    private Height height;
+
+    @ManyToOne
+    @NotNull(message="this field is required")
+    private Light light;
+
+    @ManyToOne
+    @NotNull(message="this field is required")
+    private Water water;
+
+    @ManyToOne
+    @NotNull(message="this field is required")
+    private Spread spread;
+
+    private boolean directSow;
+
+    private Date sowBy;
+
+    private boolean indoorStart;
+
+    private Date indoorStartBy;
+
+    private Date moveOutBy;
+
+    @ManyToOne
+    @NotNull(message="Field required")
+    private Family family;
+
+    @ManyToMany
+    private List<Tag> tags = new ArrayList<>();
+
+    public Seed(String commonName, String scientificName, Height height, Light light, Water water, Spread spread, boolean directSow, Date sowBy, boolean indoorStart, Date indoorStartBy, Date moveOutBy, Family family) {
         this.commonName = commonName;
         this.scientificName = scientificName;
-        this.sun = sun;
-        this.water = water;
         this.height = height;
-        this.width = width;
-        this.deerResistant = deerResistant;
-        this.deerFood = deerFood;
-        this.walnutResistant = walnutResistant;
-        this.beeFood = beeFood;
+        this.light = light;
+        this.water = water;
+        this.spread = spread;
         this.directSow = directSow;
         this.sowBy = sowBy;
         this.indoorStart = indoorStart;
         this.indoorStartBy = indoorStartBy;
         this.moveOutBy = moveOutBy;
         this.family = family;
-        this.edible = edible;
-        this.nativity = nativity;
-    }
-
-    public Seed(String commonName){
-        this(commonName, null, null, null, null, null, false, false, false, false, false, null, false, null, null, null, false, null);
     }
 
     public Seed() {}
@@ -74,68 +82,36 @@ public class Seed extends AbstractEntity{
         this.scientificName = scientificName;
     }
 
-    public LightNeeds getSun() {
-        return sun;
-    }
-
-    public void setSun(LightNeeds sun) {
-        this.sun = sun;
-    }
-
-    public WaterNeeds getWater() {
-        return water;
-    }
-
-    public void setWater(WaterNeeds water) {
-        this.water = water;
-    }
-
-    public Heights getHeight() {
+    public Height getHeight() {
         return height;
     }
 
-    public void setHeight(Heights height) {
+    public void setHeight(Height height) {
         this.height = height;
     }
 
-    public Spreads getWidth() {
-        return width;
+    public Light getLight() {
+        return light;
     }
 
-    public void setWidth(Spreads width) {
-        this.width = width;
+    public void setLight(Light light) {
+        this.light = light;
     }
 
-    public boolean isDeerResistant() {
-        return deerResistant;
+    public Water getWater() {
+        return water;
     }
 
-    public void setDeerResistant(boolean deerResistant) {
-        this.deerResistant = deerResistant;
+    public void setWater(Water water) {
+        this.water = water;
     }
 
-    public boolean isDeerFood() {
-        return deerFood;
+    public Spread getSpread() {
+        return spread;
     }
 
-    public void setDeerFood(boolean deerFood) {
-        this.deerFood = deerFood;
-    }
-
-    public boolean isWalnutResistant() {
-        return walnutResistant;
-    }
-
-    public void setWalnutResistant(boolean walnutResistant) {
-        this.walnutResistant = walnutResistant;
-    }
-
-    public boolean isBeeFood() {
-        return beeFood;
-    }
-
-    public void setBeeFood(boolean beeFood) {
-        this.beeFood = beeFood;
+    public void setSpread(Spread spread) {
+        this.spread = spread;
     }
 
     public boolean isDirectSow() {
@@ -186,20 +162,12 @@ public class Seed extends AbstractEntity{
         this.family = family;
     }
 
-    public boolean isEdible() {
-        return edible;
+    public List<Tag> getTags() {
+        return tags;
     }
 
-    public void setEdible(boolean edible) {
-        this.edible = edible;
-    }
-
-    public Nativity getNativity() {
-        return nativity;
-    }
-
-    public void setNativity(Nativity nativity) {
-        this.nativity = nativity;
+    public void addTag(Tag tag) {
+        this.tags.add(tag);
     }
 
     @Override

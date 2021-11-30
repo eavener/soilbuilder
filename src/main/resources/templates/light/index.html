@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<header th:replace="fragments :: header"></header>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Light</th>
+    </tr>
+    </thead>
+    <tr th:each="light : ${lights}">
+        <td><a th:text="${light.name}" th:href="'/seeds?categoryId=' + ${light.id}"></a></td>
+    </tr>
+
+</table>
+
+</body>
+</html>

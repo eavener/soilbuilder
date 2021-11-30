@@ -15,40 +15,30 @@
         <th>Water Needs</th>
         <th>Mature Height</th>
         <th>Mature Spread</th>
-        <th>Deer Resistant</th>
-        <th>Deer Attractant</th>
-        <th>Walnut Resistant</th>
-        <th>Pollinator Friendly</th>
-        <th>Direct Sow</th>
+        <th>Direct Sow?</th>
         <th>Direct Sow By Date</th>
-        <th>Start Indoors</th>
+        <th>Start Indoors?</th>
         <th>Indoor Start By Date</th>
         <th>Transplant By</th>
         <th>Family</th>
-        <th>Edibility</th>
-        <th>Nativity</th>
+        <th>Tags</th>
     </tr>
     </thead>
     <tr th:each="seed : ${seeds}">
         <td th:text="${seed.id}"></td>
         <td th:text="${seed.commonName}"></td>
         <td th:text="${seed.scientificName}"></td>
-        <td th:text="${seed.sun}"></td>
-        <td th:text="${seed.water}"></td>
-        <td th:text="${seed.height}"></td>
-        <td th:text="${seed.width}"></td>
-        <td th:text="${seed.deerResistant}"></td>
-        <td th:text="${seed.deerFood}"></td>
-        <td th:text="${seed.walnutResistant}"></td>
-        <td th:text="${seed.beeFood}"></td>
+        <td th:text="${seed.light.name}"></td>
+        <td th:text="${seed.water.name}"></td>
+        <td th:text="${seed.height.name}"></td>
+        <td th:text="${seed.width.name}"></td>
         <td th:text="${seed.directSow}"></td>
         <td th:text="${seed.sowBy}"></td>
         <td th:text="${seed.indoorStart}"></td>
         <td th:text="${seed.indoorStartBy}"></td>
         <td th:text="${seed.moveOutBy}"></td>
-        <td th:text="${seed.family}"></td>
-        <td th:text="${seed.edible}"></td>
-        <td th:text="${seed.nativity}"></td>
+        <td th:text="${seed.family.name}"></td>
+        <td th:text="${seed.tag.name}"></td>
     </tr>
 </table>
 

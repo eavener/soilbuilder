@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<header th:replace="fragments :: header"></header>
+
+<form method="post">
+    <div class="form-group">
+        <label>New Height
+            <input type="text" th:field="${height.name}" class="form-control" />
+        </label>
+        <p class="error" th:errors="${height.name}"></p>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create New Height" class="btn btn-success">
+    </div>
+</form>
+
+</body>
+</html>

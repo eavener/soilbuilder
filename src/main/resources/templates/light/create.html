@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<header th:replace="fragments :: header"></header>
+
+<form method="post">
+    <div class="form-group">
+        <label>New Light
+            <input type="text" th:field="${light.name}" class="form-control" />
+        </label>
+        <p class="error" th:errors="${light.name}"></p>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create New Light" class="btn btn-success">
+    </div>
+</form>
+
+</body>
+</html>

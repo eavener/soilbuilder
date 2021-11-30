@@ -1,21 +1,15 @@
 package org.launchcode.soilbuilder.controllers;
 
-import org.launchcode.soilbuilder.data.SeedRepository;
+import org.launchcode.soilbuilder.data.*;
 import org.launchcode.soilbuilder.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Date;
-import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("seeds")
@@ -24,10 +18,39 @@ public class SeedController {
     @Autowired
     private SeedRepository seedRepository;
 
+    @Autowired
+    private FamilyRepository familyRepository;
+
+    @Autowired
+    private HeightRepository heightRepository;
+
+    @Autowired
+    private LightRepository lightRepository;
+
+    @Autowired
+    private SpreadRepository spreadRepository;
+
+    @Autowired
+    private WaterRepository waterRepository;
+
+    @Autowired
+    private TagRepository tagRepository;
+
     @GetMapping
-    public String displayAllSeeds(Model model) {
-        model.addAttribute("title", "All Seeds");
-        model.addAttribute("seeds", seedRepository.findAll());
+    public String displayAllSeeds(@RequestParam(required = false) Integer familyId, Model model) {
+        if (familyId == null) {
+            model.addAttribute("title", "All Seeds");
+            model.addAttribute("seeds", seedRepository.findAll());
+        } else {
+            Optional<Family> result = familyRepository.findById(familyId);
+            if (result.isEmpty()) {
+                model.addAttribute("title", "Invalid Family ID: " + familyId);
+            } else {
+                Family family = result.get();
+                model.addAttribute("title", "Seeds in family: " + family.getName());
+                model.addAttribute("events", family.getSeeds());
+            }
+        }
         return "seeds/index";
     }
 
@@ -35,12 +58,13 @@ public class SeedController {
     public String renderCreateSeedForm(Model model) {
         model.addAttribute("title", "Create Seed");
         model.addAttribute("seed", new Seed());
-        model.addAttribute("suns", LightNeeds.values());
-        model.addAttribute("waters", WaterNeeds.values());
-        model.addAttribute("heights", Heights.values());
-        model.addAttribute("widths", Spreads.values());
-        model.addAttribute("families", Family.values());
-        model.addAttribute("nativities", Nativity.values());
+        model.addAttribute("family", familyRepository.findAll());
+        model.addAttribute("light", lightRepository.findAll());
+        model.addAttribute("height", heightRepository.findAll());
+        model.addAttribute("spread", spreadRepository.findAll());
+        model.addAttribute("water", waterRepository.findAll());
+        model.addAttribute("tag", tagRepository.findAll());
+
         return "seeds/create";
     }
 
@@ -48,7 +72,6 @@ public class SeedController {
     public String processCreateSeedForm(@ModelAttribute @Valid Seed newSeed, Errors errors, Model model) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Create Seed");
-            model.addAttribute(new Seed());
             return "seeds/create";
         }
         seedRepository.save(newSeed);
@@ -70,5 +93,19 @@ public class SeedController {
             }
         }
         return "redirect:";
+    }
+
+    @GetMapping("detail")
+    public String displaySeedDetails(@RequestParam Integer seedId, Model model) {
+        Optional<Seed> result = seedRepository.findById(seedId);
+
+        if (result.isEmpty()) {
+            model.addAttribute("title", "Invalid Event ID: " + seedId);
+        } else {
+            Seed seed = result.get();
+            model.addAttribute("title", seed.getCommonName() + " Details");
+            model.addAttribute("seed", seed);
+        }
+        return "seeds/detail";
     }
 }
