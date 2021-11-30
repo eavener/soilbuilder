@@ -10,16 +10,10 @@ import java.util.Date;
 public class SoilTest extends AbstractEntity{
 
     @ManyToOne
-    @JoinColumn(name = "soil_plot_id")
     @NotNull
     private SoilPlot soilPlot;
 
     private Date testDate;
-    private Integer hardinessZone;
-    private Date firstFrost;
-    private Date lastFrost;
-    private boolean walnut;
-    private boolean deer;
     private Double nitrogen;
     private Double phosphorous;
     private Double potassium;
@@ -41,14 +35,9 @@ public class SoilTest extends AbstractEntity{
     public SoilTest() {
     }
 
-    public SoilTest(SoilPlot soilPlot, Date testDate, Integer hardinessZone, Date firstFrost, Date lastFrost, boolean walnut, boolean deer, Double nitrogen, Double phosphorous, Double potassium, Double sulfur, Double calcium, Double magnesium, Double copper, Double iron, Double manganese, Double zinc, Double boron, Double chloride, Double molybdenum, Double organicMatter, Double pH, Double salinity, Double cationExchangeCapacity) {
+    public SoilTest(SoilPlot soilPlot, Date testDate, Double nitrogen, Double phosphorous, Double potassium, Double sulfur, Double calcium, Double magnesium, Double copper, Double iron, Double manganese, Double zinc, Double boron, Double chloride, Double molybdenum, Double organicMatter, Double pH, Double salinity, Double cationExchangeCapacity) {
         this.soilPlot = soilPlot;
         this.testDate = testDate;
-        this.hardinessZone = hardinessZone;
-        this.firstFrost = firstFrost;
-        this.lastFrost = lastFrost;
-        this.walnut = walnut;
-        this.deer = deer;
         this.nitrogen = nitrogen;
         this.phosphorous = phosphorous;
         this.potassium = potassium;
@@ -82,46 +71,6 @@ public class SoilTest extends AbstractEntity{
 
     public void setTestDate(Date testDate) {
         this.testDate = testDate;
-    }
-
-    public Integer getHardinessZone() {
-        return hardinessZone;
-    }
-
-    public void setHardinessZone(Integer hardinessZone) {
-        this.hardinessZone = hardinessZone;
-    }
-
-    public Date getFirstFrost() {
-        return firstFrost;
-    }
-
-    public void setFirstFrost(Date firstFrost) {
-        this.firstFrost = firstFrost;
-    }
-
-    public Date getLastFrost() {
-        return lastFrost;
-    }
-
-    public void setLastFrost(Date lastFrost) {
-        this.lastFrost = lastFrost;
-    }
-
-    public boolean isWalnut() {
-        return walnut;
-    }
-
-    public void setWalnut(boolean walnut) {
-        this.walnut = walnut;
-    }
-
-    public boolean isDeer() {
-        return deer;
-    }
-
-    public void setDeer(boolean deer) {
-        this.deer = deer;
     }
 
     public Double getNitrogen() {

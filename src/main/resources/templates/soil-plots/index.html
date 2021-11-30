@@ -1,10 +1,39 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title></title>
-</head>
-<body>
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<header th:replace="fragments :: header"></header>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Plot Nickname</th>
+        <th>Light</th>
+        <th>Water</th>
+        <th>Length</th>
+        <th>Width</th>
+        <th>USDA Hardiness Zone</th>
+        <th>First Frost</th>
+        <th>Last Frost</th>
+        <th>Walnut Trees Present?</th>
+    </tr>
+    </thead>
+    <tr th:each="soilPlot : ${soilPlots}">
+        <td th:text="${soilPlot.id}"></td>
+        <td th:text="${soilPlot.plotName}"></td>
+        <td th:text="${soilPlot.light.name}"></td>
+        <td th:text="${soilPlot.water.name}"></td>
+        <td th:text="${soilPlot.length}"></td>
+        <td th:text="${soilPlot.width}"></td>
+        <td th:text="${soilPlot.hardinessZone}"></td>
+        <td th:text="${soilPlot.firstFrost}"></td>
+        <td th:text="${soilPlot.lastFrost}"></td>
+        <td th:text="${soilPlot.walnutResistant}"></td>
+    </tr>
+</table>
+
 
 </body>
 </html>

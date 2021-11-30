@@ -62,8 +62,15 @@
         <th>Family</th>
         <td th:text="${seed.family}"></td>
     </tr>
-
+    <tr>
+        <th>Tags</th>
+        <td>
+            <span th:each="tag : ${tags}" th:text="${tag.displayName} + ' '"></span>
+        </td>
+    </tr>
 </table>
+
+<a th:href="'/seeds/add-tag?seedId=' + ${seed.id}">Add Tag</a>
 
 </body>
 </html>

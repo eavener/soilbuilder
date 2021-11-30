@@ -1,10 +1,71 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title></title>
-</head>
-<body>
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<header th:replace="fragments :: header"></header>
+
+<form method="post">
+    <div class="form-group">
+        <label>New Plot
+            <input type="text" th:field="${soilPlot.plotName}" class="form-control" />
+        </label>
+        <p class="error" th:errors="${soilPlot.plotName}"></p>
+    </div>
+    <div class="form-group">
+        <label>Light
+            <select th:field="${soilPlot.light}">
+                <option th:each="light : ${lights}"
+                        th:value="${light.id}"
+                        th:text="${light.name}"></option>
+            </select>
+            <p class="error" th:errors="${soilPlot.light}"></p>
+        </label>
+    </div>
+    <div class="form-group">
+        <label>Water
+            <select th:field="${soilPlot.water}">
+                <option th:each="water : ${waters}"
+                        th:value="${water.id}"
+                        th:text="${water.name}"></option>
+            </select>
+            <p class="error" th:errors="${soilPlot.water}"></p>
+        </label>
+    </div>
+    <div class="form-group">
+        <label>Length (ft)
+            <input type="number" th:field="${soilPlot.length}" class="form-control" />
+        </label>
+        <p class="error" th:errors="${soilPlot.length}"></p>
+    </div>
+    <div class="form-group">
+        <label>Width (ft)
+            <input type="number" th:field="${soilPlot.width}" class="form-control" />
+        </label>
+        <p class="error" th:errors="${soilPlot.plotName}"></p>
+    </div>
+    <div class="form-group">
+        <label>USDA Hardiness Zone
+            <input type="number" th:field="${soilPlot.hardinessZone}" class="form-control" />
+        </label>
+        <p class="error" th:errors="${soilPlot.hardinessZone}"></p>
+    </div>
+    <div class="form-group">
+        <label>First Frost
+            <input type="date" name="firstFrost" th:value="${soilPlot.firstFrost}" /> </label>
+    </div>
+    <div class="form-group">
+        <label>Last Frost
+            <input type="date" name="lastFrost" th:value="${soilPlot.lastFrost}" /> </label>
+    </div>
+    <div class="form-group">
+        <label>Near Walnuts?
+            <input type="checkbox" name="walnutResistant" th:checked="${soilPlot.walnutResistant}" /> </label>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create New Tag" class="btn btn-success">
+    </div>
+</form>
 
 </body>
 </html>

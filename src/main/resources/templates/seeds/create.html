@@ -88,15 +88,6 @@
         <label>Transplant by:
             <input type="date" name="moveOutBy" th:value="${seed.moveOutBy}" /> </label>
     </div>
-    <div class="form-group">
-        <label>Tag
-            <select th:field="${seed.tag}">
-                <option th:each="tag : ${tags}"
-                        th:value="${tag.id}"
-                        th:text="${tag.name}"></option>
-            </select>
-            <p class="error" th:errors="${seed.tag}"></p>
-        </label>
     </div>
     <div class="form-group">
         <input type="submit" value="Create Seed" class="btn btn-success">

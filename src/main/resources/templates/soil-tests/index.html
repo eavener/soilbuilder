@@ -1,11 +1,58 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title></title>
-</head>
-<body>
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
 <header th:replace="fragments :: header"></header>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Plot</th>
+        <th>Test Date</th>
+        <th>Nitrogen</th>
+        <th>Phosphorous</th>
+        <th>Potassium</th>
+        <th>Sulfur</th>
+        <th>Calcium</th>
+        <th>Magnesium</th>
+        <th>Copper</th>
+        <th>Iron</th>
+        <th>Manganese</th>
+        <th>Zinc</th>
+        <th>Boron</th>
+        <th>Chloride</th>
+        <th>Molybdenum</th>
+        <th>Organic Matter</th>
+        <th>pH</th>
+        <th>Salinity</th>
+        <th>Cation Exchange Capacity (CEC)</th>
+    </tr>
+    </thead>
+    <tr th:each="soilTest : ${soilTests}">
+        <td th:text="${soilTest.id}"></td>
+        <td th:text="${soilTest.soilPlot.plotName}"></td>
+        <td th:text="${soilTest.testDate}"></td>
+        <td th:text="${soilTest.nitrogen}"></td>
+        <td th:text="${soilTest.phosphorous}"></td>
+        <td th:text="${soilTest.potassium}"></td>
+        <td th:text="${soilTest.sulfur}"></td>
+        <td th:text="${soilTest.calcium}"></td>
+        <td th:text="${soilTest.magnesium}"></td>
+        <td th:text="${soilTest.copper}"></td>
+        <td th:text="${soilTest.iron}"></td>
+        <td th:text="${soilTest.zinc}"></td>
+        <td th:text="${soilTest.boron}"></td>
+        <td th:text="${soilTest.chloride}"></td>
+        <td th:text="${soilTest.molybdenum}"></td>
+        <td th:text="${soilTest.organicMatter}"></td>
+        <td th:text="${soilTest.pH}"></td>
+        <td th:text="${soilTest.salinity}"></td>
+        <td th:text="${soilTest.cationExchangeCapacity}"></td>
+    </tr>
+</table>
+
 
 </body>
 </html>

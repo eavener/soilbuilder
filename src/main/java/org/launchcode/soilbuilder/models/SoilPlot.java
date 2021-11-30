@@ -1,10 +1,13 @@
 package org.launchcode.soilbuilder.models;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -14,18 +17,25 @@ public class SoilPlot extends AbstractEntity{
     @Size(min=3, message="Name must be at least 3 characters long")
     private String plotName;
 
-    private Light sun;
+    @ManyToOne
+    private Light light;
+
+    @ManyToOne
     private Water water;
+
     private Integer length;
     private Integer width;
+    private Integer hardinessZone;
+    private Date firstFrost;
+    private Date lastFrost;
     private boolean walnutResistant;
 
-    @OneToMany
+    @OneToMany (mappedBy = "soilPlot")
     private final List<SoilTest> soilTests = new ArrayList<>();
 
-    public SoilPlot(@Size(min=3, message="Name must be at least 3 characters long") String plotName, Light sun, Water water, Integer length, Integer width, boolean walnutResistant) {
+    public SoilPlot(String plotName, Light light, Water water, Integer length, Integer width, boolean walnutResistant) {
         this.plotName = plotName;
-        this.sun = sun;
+        this.light = light;
         this.water = water;
         this.length = length;
         this.width = width;
@@ -42,12 +52,12 @@ public class SoilPlot extends AbstractEntity{
         this.plotName = plotName;
     }
 
-    public Light getSun() {
-        return sun;
+    public Light getLight() {
+        return light;
     }
 
-    public void setSun(Light sun) {
-        this.sun = sun;
+    public void setLight(Light light) {
+        this.light = light;
     }
 
     public Water getWater() {
@@ -72,6 +82,30 @@ public class SoilPlot extends AbstractEntity{
 
     public void setWidth(Integer width) {
         this.width = width;
+    }
+
+    public Integer getHardinessZone() {
+        return hardinessZone;
+    }
+
+    public void setHardinessZone(Integer hardinessZone) {
+        this.hardinessZone = hardinessZone;
+    }
+
+    public Date getFirstFrost() {
+        return firstFrost;
+    }
+
+    public void setFirstFrost(Date firstFrost) {
+        this.firstFrost = firstFrost;
+    }
+
+    public Date getLastFrost() {
+        return lastFrost;
+    }
+
+    public void setLastFrost(Date lastFrost) {
+        this.lastFrost = lastFrost;
     }
 
     public boolean isWalnutResistant() {

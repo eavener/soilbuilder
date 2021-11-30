@@ -1,11 +1,126 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title></title>
-</head>
-<body>
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
 <header th:replace="fragments :: header"></header>
+
+<form method="post">
+    <div class="form-group">
+        <label>New Soil Test
+            <input type="text" th:field="${soilTest.soilPlot.plotName}" class="form-control" />
+        </label>
+        <p class="error" th:errors="${soilTest.soilPlot.plotName}"></p>
+    </div>
+    <div class="form-group">
+        <label>Date of Test
+            <input type="date" name="testDate" th:value="${soilTest.testDate}" /> </label>
+    </div>
+    <div class="form-group">
+        <label>Nitrogen
+            <input type="number" th:field="${soilTest.nitrogen}" class="form-control" />
+        </label>
+        <p class="error" th:errors="${soilTest.nitrogen}"></p>
+    </div><div class="form-group">
+        <label>Phosphorous
+            <input type="number" th:field="${soilTest.phosphorous}" class="form-control" />
+        </label>
+        <p class="error" th:errors="${soilTest.phosphorous}"></p>
+    </div>
+    <div class="form-group">
+        <label>Potassium
+            <input type="number" th:field="${soilTest.potassium}" class="form-control" />
+        </label>
+        <p class="error" th:errors="${soilTest.potassium}"></p>
+    </div>
+    <div class="form-group">
+        <label>Sulfur
+            <input type="number" th:field="${soilTest.sulfur}" class="form-control" />
+        </label>
+        <p class="error" th:errors="${soilTest.sulfur}"></p>
+    </div>
+    <div class="form-group">
+        <label>Calcium
+            <input type="number" th:field="${soilTest.calcium}" class="form-control" />
+        </label>
+        <p class="error" th:errors="${soilTest.calcium}"></p>
+    </div>
+    <div class="form-group">
+        <label>Magnesium
+            <input type="number" th:field="${soilTest.magnesium}" class="form-control" />
+        </label>
+        <p class="error" th:errors="${soilTest.magnesium}"></p>
+    </div>
+    <div class="form-group">
+        <label>Copper
+            <input type="number" th:field="${soilTest.copper}" class="form-control" />
+        </label>
+        <p class="error" th:errors="${soilTest.copper}"></p>
+    </div>
+    <div class="form-group">
+        <label>Iron
+            <input type="number" th:field="${soilTest.iron}" class="form-control" />
+        </label>
+        <p class="error" th:errors="${soilTest.iron}"></p>
+    </div>
+    <div class="form-group">
+        <label>Manganese
+            <input type="number" th:field="${soilTest.manganese}" class="form-control" />
+        </label>
+        <p class="error" th:errors="${soilTest.manganese}"></p>
+    </div>
+    <div class="form-group">
+        <label>Zinc
+            <input type="number" th:field="${soilTest.zinc}" class="form-control" />
+        </label>
+        <p class="error" th:errors="${soilTest.zinc}"></p>
+    </div>
+    <div class="form-group">
+        <label>Boron
+            <input type="number" th:field="${soilTest.boron}" class="form-control" />
+        </label>
+        <p class="error" th:errors="${soilTest.boron}"></p>
+    </div>
+    <div class="form-group">
+        <label>Chloride
+            <input type="number" th:field="${soilTest.chloride}" class="form-control" />
+        </label>
+        <p class="error" th:errors="${soilTest.chloride}"></p>
+    </div>
+    <div class="form-group">
+        <label>Molybdenum
+            <input type="number" th:field="${soilTest.molybdenum}" class="form-control" />
+        </label>
+        <p class="error" th:errors="${soilTest.molybdenum}"></p>
+    </div>
+    <div class="form-group">
+        <label>Organic Matter
+            <input type="number" th:field="${soilTest.organicMatter}" class="form-control" />
+        </label>
+        <p class="error" th:errors="${soilTest.organicMatter}"></p>
+    </div>
+    <div class="form-group">
+        <label>pH
+            <input type="number" th:field="${soilTest.pH}" class="form-control" />
+        </label>
+        <p class="error" th:errors="${soilTest.pH}"></p>
+    </div>
+    <div class="form-group">
+        <label>Salinity
+            <input type="number" th:field="${soilTest.salinity}" class="form-control" />
+        </label>
+        <p class="error" th:errors="${soilTest.salinity}"></p>
+    </div>
+    <div class="form-group">
+        <label>Cation Exchange Capacity (CEC)
+            <input type="number" th:field="${soilTest.cationExchangeCapacity}" class="form-control" />
+        </label>
+        <p class="error" th:errors="${soilTest.cationExchangeCapacity}"></p>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create New Tag" class="btn btn-success">
+    </div>
+</form>
 
 </body>
 </html>

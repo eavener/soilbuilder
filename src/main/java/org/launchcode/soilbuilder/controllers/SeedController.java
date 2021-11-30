@@ -106,6 +106,7 @@ public class SeedController {
             Seed seed = result.get();
             model.addAttribute("title", seed.getCommonName() + " Details");
             model.addAttribute("seed", seed);
+            model.addAttribute("tags", seed.getTags());
         }
         return "seeds/detail";
     }
