@@ -8,37 +8,11 @@
 <table class="table table-striped">
     <thead>
     <tr>
-        <th>ID</th>
-        <th>Common Name</th>
-        <th>Scientific Name</th>
-        <th>Light Needs</th>
-        <th>Water Needs</th>
-        <th>Mature Height</th>
-        <th>Mature Spread</th>
-        <th>Direct Sow?</th>
-        <th>Direct Sow By Date</th>
-        <th>Start Indoors?</th>
-        <th>Indoor Start By Date</th>
-        <th>Transplant By</th>
-        <th>Family</th>
-        <th>Tags</th>
+        <th>Seed</th>
     </tr>
     </thead>
     <tr th:each="seed : ${seeds}">
-        <td th:text="${seed.id}"></td>
-        <td th:text="${seed.commonName}"></td>
-        <td th:text="${seed.scientificName}"></td>
-        <td th:text="${seed.light.name}"></td>
-        <td th:text="${seed.water.name}"></td>
-        <td th:text="${seed.height.name}"></td>
-        <td th:text="${seed.spread.name}"></td>
-        <td th:text="${seed.directSow}"></td>
-        <td th:text="${seed.sowBy}"></td>
-        <td th:text="${seed.indoorStart}"></td>
-        <td th:text="${seed.indoorStartBy}"></td>
-        <td th:text="${seed.moveOutBy}"></td>
-        <td th:text="${seed.family.name}"></td>
-        <td th:text="${seed.tag.name}"></td>
+        <td><a th:href="'/seeds/detail?seedId=' + ${seed.id}" th:text="${seed.commonName}"></a></td>
     </tr>
 </table>
 

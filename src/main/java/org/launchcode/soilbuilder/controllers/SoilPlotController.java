@@ -1,6 +1,8 @@
 package org.launchcode.soilbuilder.controllers;
 
+import org.launchcode.soilbuilder.data.LightRepository;
 import org.launchcode.soilbuilder.data.SoilPlotRepository;
+import org.launchcode.soilbuilder.data.WaterRepository;
 import org.launchcode.soilbuilder.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,12 @@ public class SoilPlotController {
     @Autowired
     private SoilPlotRepository soilPlotRepository;
 
+    @Autowired
+    private LightRepository lightRepository;
+
+    @Autowired
+    private WaterRepository waterRepository;
+
     @GetMapping
     public String displayAllSoilPlots(Model model) {
         model.addAttribute("title", "All Soil Plots");
@@ -28,6 +36,8 @@ public class SoilPlotController {
     public String renderCreateSoilPlotsForm(Model model) {
         model.addAttribute("title", "Create Soil Plot");
         model.addAttribute("soilPlot", new SoilPlot());
+        model.addAttribute("lights", lightRepository.findAll());
+        model.addAttribute("waters", waterRepository.findAll());
 
         return "soil-plots/create";
     }

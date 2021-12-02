@@ -59,12 +59,11 @@ public class SeedController {
     public String renderCreateSeedForm(Model model) {
         model.addAttribute("title", "Create Seed");
         model.addAttribute("seed", new Seed());
-        model.addAttribute("family", familyRepository.findAll());
-        model.addAttribute("light", lightRepository.findAll());
-        model.addAttribute("height", heightRepository.findAll());
-        model.addAttribute("spread", spreadRepository.findAll());
-        model.addAttribute("water", waterRepository.findAll());
-        model.addAttribute("tag", tagRepository.findAll());
+        model.addAttribute("lights", lightRepository.findAll());
+        model.addAttribute("waters", waterRepository.findAll());
+        model.addAttribute("heights", heightRepository.findAll());
+        model.addAttribute("spreads", spreadRepository.findAll());
+        model.addAttribute("families", familyRepository.findAll());
 
         return "seeds/create";
     }
@@ -120,7 +119,7 @@ public class SeedController {
         SeedTagDTO seedTag = new SeedTagDTO();
         seedTag.setSeed(seed);
         model.addAttribute("seedTag", seedTag);
-        return "seeds/add-tag.html";
+        return "seeds/add-tag";
     }
 
     @PostMapping("add-tag")
@@ -132,7 +131,7 @@ public class SeedController {
                 seed.addTag(tag);
                 seedRepository.save(seed);
             }
-            return "redirect:detail?eventId= " + seed.getId();
+            return "redirect:detail?seedId= " + seed.getId();
         }
         return "redirect:add-tag";
     }

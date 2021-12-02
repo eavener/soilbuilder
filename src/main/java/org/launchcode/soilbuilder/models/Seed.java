@@ -1,6 +1,8 @@
 package org.launchcode.soilbuilder.models;
 
 
+import org.springframework.lang.Nullable;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -32,15 +34,8 @@ public class Seed extends AbstractEntity{
     @NotNull(message="this field is required")
     private Spread spread;
 
-    private boolean directSow;
-
+    @Nullable
     private Date sowBy;
-
-    private boolean indoorStart;
-
-    private Date indoorStartBy;
-
-    private Date moveOutBy;
 
     @ManyToOne
     @NotNull(message="Field required")
@@ -49,18 +44,14 @@ public class Seed extends AbstractEntity{
     @ManyToMany
     private List<Tag> tags = new ArrayList<>();
 
-    public Seed(String commonName, String scientificName, Height height, Light light, Water water, Spread spread, boolean directSow, Date sowBy, boolean indoorStart, Date indoorStartBy, Date moveOutBy, Family family) {
+    public Seed(String commonName, String scientificName, Height height, Light light, Water water, Spread spread, Date sowBy, Family family) {
         this.commonName = commonName;
         this.scientificName = scientificName;
         this.height = height;
         this.light = light;
         this.water = water;
         this.spread = spread;
-        this.directSow = directSow;
         this.sowBy = sowBy;
-        this.indoorStart = indoorStart;
-        this.indoorStartBy = indoorStartBy;
-        this.moveOutBy = moveOutBy;
         this.family = family;
     }
 
@@ -114,44 +105,12 @@ public class Seed extends AbstractEntity{
         this.spread = spread;
     }
 
-    public boolean isDirectSow() {
-        return directSow;
-    }
-
-    public void setDirectSow(boolean directSow) {
-        this.directSow = directSow;
-    }
-
     public Date getSowBy() {
         return sowBy;
     }
 
     public void setSowBy(Date sowBy) {
         this.sowBy = sowBy;
-    }
-
-    public boolean isIndoorStart() {
-        return indoorStart;
-    }
-
-    public void setIndoorStart(boolean indoorStart) {
-        this.indoorStart = indoorStart;
-    }
-
-    public Date getIndoorStartBy() {
-        return indoorStartBy;
-    }
-
-    public void setIndoorStartBy(Date indoorStartBy) {
-        this.indoorStartBy = indoorStartBy;
-    }
-
-    public Date getMoveOutBy() {
-        return moveOutBy;
-    }
-
-    public void setMoveOutBy(Date moveOutBy) {
-        this.moveOutBy = moveOutBy;
     }
 
     public Family getFamily() {

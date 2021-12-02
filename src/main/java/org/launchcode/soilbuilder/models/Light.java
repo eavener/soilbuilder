@@ -9,7 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Light extends AbstractCharacteristics {
+public class Light extends AbstractEntity {
+
+    @NotBlank
+    @Size(min=3, message="Name must be at least 3 characters long")
+    private String name;
 
     @OneToMany(mappedBy = "light")
     private final List<Seed> seeds = new ArrayList<>();
@@ -17,15 +21,26 @@ public class Light extends AbstractCharacteristics {
     @OneToMany(mappedBy = "light")
     private final List<SoilPlot> soilPlots = new ArrayList<>();
 
-    public Light(@Size(min = 3, message = "Name must be at least 3 characters long") String name) {
-        this.name = name;
-    }
+    public Light(String name) {this.name = name;}
 
     public Light() {}
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public List<Seed> getSeeds() {
         return seeds;
     }
 
     public List<SoilPlot> getSoilPlots() {return soilPlots;}
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
