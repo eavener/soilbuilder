@@ -23,7 +23,8 @@ dependencies {
 	implementation 'org.webjars:momentjs:2.9.0'
 	implementation 'org.webjars.bowergithub.jquery:jquery-ui:1.12.1'
 	implementation 'org.webjars.bower:jquery:2.1.3'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	implementation 'org.springframework.security:spring-security-crypto'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
